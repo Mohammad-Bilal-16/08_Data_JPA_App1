@@ -1,6 +1,5 @@
 package in.ashokit.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -27,7 +26,7 @@ public class Student {
 	@Column(name = "student_gender")
 	private String gender;
 
-	@Column(name = "ACTIVE_SW" )
+	@Column(name = "ACTIVE_SW")
 	private String activeSW;
 
 	@CreationTimestamp
@@ -40,15 +39,8 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", rank=" + rank +
-				", gender='" + gender + '\'' +
-				", activeSW='" + activeSW + '\'' +
-				", createDate=" + createDate +
-				", updateDate=" + updateDate +
-				'}';
+		return "Student{" + "id=" + id + ", name='" + name + '\'' + ", rank=" + rank + ", gender='" + gender + '\''
+				+ ", activeSW='" + activeSW + '\'' + ", createDate=" + createDate + ", updateDate=" + updateDate + '}';
 	}
 
 	public Student() {
@@ -62,6 +54,7 @@ public class Student {
 		this.gender = gender;
 		this.activeSW = activeSW;
 	}
+
 	public Integer getId() {
 		return id;
 	}
