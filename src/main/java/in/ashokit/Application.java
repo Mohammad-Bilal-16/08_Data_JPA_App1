@@ -1,16 +1,11 @@
 package in.ashokit;
 
-import java.util.List;
-import java.util.Scanner;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
-import in.ashokit.entity.Teacher;
-import in.ashokit.repository.TeacherRepository;
+import in.ashokit.entity.Student;
+import in.ashokit.repository.StudentRepository;
 
 @SpringBootApplication
 public class Application {
@@ -18,26 +13,44 @@ public class Application {
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-	    TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
-	    
-	    /**
-	     * Pagination and sorting standalone app
-	     */
-	    Scanner scan = new Scanner(System.in);
-	    System.out.println("Enter Page Number!");
-	    int pageNo = scan.nextInt();
-	    
-	    int pageSize = 3;
-	    
-	    PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
-	    Page<Teacher> students = teacherRepository.findAll(pageRequest);
-	    List<Teacher> content = students.getContent();
-	    content.forEach(System.out::println);
-
+		StudentRepository studentRepository = context.getBean(StudentRepository.class);
+		
+		Student student = studentRepository.findById(101).get();
+		//student.setActiveSW("Y");
+		student.setActiveSW("N");
+		
+		studentRepository.save(student);
+	
 	}
 }
+
+/*
+ * studentRepository.deleteStudent(106); System.out.println("Deleted....");
+ */
+
+//TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
 //
 //StudentRepository studentRepository = context.getBean(StudentRepository.class);
+
+
+/*
+ * List<Teacher> students = teacherRepository.findAll(Sort.by("subject"));
+ * students.forEach(System.out::println);
+ */
+
+/*
+ * Scanner scan = new Scanner(System.in);
+ * System.out.println("Enter Page Number!"); int pageNo = scan.nextInt();
+ * 
+ * int pageSize = 3;
+ * 
+ * PageRequest pageRequest = PageRequest.of(pageNo, pageSize); Page<Teacher>
+ * students = teacherRepository.findAll(pageRequest); List<Teacher> content =
+ * students.getContent(); content.forEach(System.out::println);
+ */
+ 
+ 
+
 
 /*
  * Teacher t1 = new Teacher(1 , "Max" , "Java"); Teacher t2 = new Teacher(2 ,
