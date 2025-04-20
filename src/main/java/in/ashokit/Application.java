@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import in.ashokit.entity.Student;
-import in.ashokit.repository.StudentRepository;
+import in.ashokit.entity.Product;
+import in.ashokit.repository.ProductRepository;
 
 @SpringBootApplication
 public class Application {
@@ -13,16 +13,25 @@ public class Application {
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-		StudentRepository studentRepository = context.getBean(StudentRepository.class);
 		
-		Student student = studentRepository.findById(101).get();
-		//student.setActiveSW("Y");
-		student.setActiveSW("N");
+		ProductRepository productRepository = context.getBean(ProductRepository.class);
 		
-		studentRepository.save(student);
+		Product p = new Product();
+		
+		productRepository.save(p);
+		System.out.println("Record Inserted....");
 	
 	}
 }
+
+//StudentRepository studentRepository = context.getBean(StudentRepository.class);
+
+/*
+ * Student student = studentRepository.findById(101).get();
+ * //student.setActiveSW("Y"); student.setActiveSW("N");
+ * 
+ * studentRepository.save(student);
+ */
 
 /*
  * studentRepository.deleteStudent(106); System.out.println("Deleted....");
