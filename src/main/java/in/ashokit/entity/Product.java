@@ -10,8 +10,7 @@ import javax.persistence.TableGenerator;
 public class Product {
 
 	@Id
-	@TableGenerator(initialValue = 100, name = "pid", table="pid_seq_tbl")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="pid")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productId;
 
 	private String productName;
