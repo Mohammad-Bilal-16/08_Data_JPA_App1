@@ -1,7 +1,8 @@
 package in.ashokit.repository;
 
-import in.ashokit.entity.Teacher;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TeacherRepository extends CrudRepository<Teacher , Integer> {
+import in.ashokit.entity.Teacher;
+
+public interface TeacherRepository extends JpaRepository<Teacher , Integer> {
 }

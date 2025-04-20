@@ -15,8 +15,13 @@ public class Teacher {
     private String name;
     @Column(name = "Teacher_subject")
     private String subject;
+    
 
-    public Teacher(){
+    @Override
+	public String toString() {
+		return "Teacher [id=" + id + ", name=" + name + ", subject=" + subject + "]";
+	}
+	public Teacher(){
 
     }
     public Teacher(int id, String name, String subject) {

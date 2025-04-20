@@ -1,13 +1,15 @@
 package in.ashokit;
 
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
-import in.ashokit.entity.Student;
-import in.ashokit.repository.StudentRepository;
+import in.ashokit.entity.Teacher;
 import in.ashokit.repository.TeacherRepository;
 
 @SpringBootApplication
@@ -16,23 +18,61 @@ public class Application {
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-		StudentRepository studentRepository = context.getBean(StudentRepository.class);
+	    TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
+	    
+	    /**
+	     * Pagination and sorting standalone app
+	     */
+	    Scanner scan = new Scanner(System.in);
+	    System.out.println("Enter Page Number!");
+	    int pageNo = scan.nextInt();
+	    
+	    int pageSize = 3;
+	    
+	    PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
+	    Page<Teacher> students = teacherRepository.findAll(pageRequest);
+	    List<Teacher> content = students.getContent();
+	    content.forEach(System.out::println);
 
-		List<Student> genderList = studentRepository.findByGender("MALE");
-		genderList.forEach(s -> System.out.println(s));
-		
+	}
+}
+//
+//StudentRepository studentRepository = context.getBean(StudentRepository.class);
 
-		List<Student> byRankGreaterThanEqual = studentRepository.findByRankGreaterThanEqual(11l);
-		byRankGreaterThanEqual.forEach(System.out::println);
+/*
+ * Teacher t1 = new Teacher(1 , "Max" , "Java"); Teacher t2 = new Teacher(2 ,
+ * "Alex" , "SpringBoot"); Teacher t3 = new Teacher(3 , "Tim" , "Spring");
+ * Teacher t4 = new Teacher(4 , "David" , "SQL"); Teacher t5 = new Teacher(5 ,
+ * "Jhon" , "AWS");
+ * 
+ * List<Teacher> Teacherlist = Arrays.asList(t1,t2,t3,t4,t5);
+ * teacherRepository.saveAll(Teacherlist);
+ */
 
-//		List<Student> byGenderIsNull = studentRepository.findByGenderIsNull();
-//		byGenderIsNull.forEach(System.out::println);
 
-		List<Student> studentListRankLess = studentRepository.findByRankLessThanEqual(11l);
-		studentListRankLess.forEach(System.out::println);
 
-		List<Student> listStudent = studentRepository.findByGenderAndRankGreaterThanEqual("MALE", 11l);
-		listStudent.forEach(System.out::println);
+//List<Student> allStudent = studentRepository.getAllStudent();
+//allStudent.forEach(System.out::println);
+//
+//List<Student> list = studentRepository.getStudent();
+//list.forEach(System.out::println);
+
+
+//		List<Student> genderList = studentRepository.findByGender("MALE");
+//		genderList.forEach(s -> System.out.println(s));
+//		
+//
+//		List<Student> byRankGreaterThanEqual = studentRepository.findByRankGreaterThanEqual(11l);
+//		byRankGreaterThanEqual.forEach(System.out::println);
+//
+////		List<Student> byGenderIsNull = studentRepository.findByGenderIsNull();
+////		byGenderIsNull.forEach(System.out::println);
+//
+//		List<Student> studentListRankLess = studentRepository.findByRankLessThanEqual(11l);
+//		studentListRankLess.forEach(System.out::println);
+//
+//		List<Student> listStudent = studentRepository.findByGenderAndRankGreaterThanEqual("MALE", 11l);
+//		listStudent.forEach(System.out::println);
 
 //		Student s = new Student(101 , "Katy" , 1l , "FEMALE" , "A");
 //		Student s1 = new Student(102 , "Max" , 11l , "MALE" , "A");
@@ -73,7 +113,7 @@ public class Application {
 //
 //		System.out.println("Student Record inserted....");
 
-		TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
+//		TeacherRepository teacherRepository = context.getBean(TeacherRepository.class);
 
 //		Teacher t = new Teacher();
 //		t.setId(101);
@@ -82,8 +122,7 @@ public class Application {
 //
 //		teacherRepository.save(t);
 //		System.out.println("Teacher Record inserted.....");
-	}
-}
+
 
 //		ProductRepository productRepo = context.getBean(ProductRepository.class);
 //
